@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tidenterra</title>
 
-  <!-- Stunning Magazine Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Magazine Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     :root {
-      /* Pastel Environmental Palette */
       --leaf: #a6c9a8;
       --mint: #dff2e1;
       --cream: #faf7f0;
       --sage: #6d8f72;
       --dark: #2d3e32;
-      --shadow: rgba(0,0,0,0.08);
+      --shadow: rgba(0, 0, 0, 0.08);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: "Inter", sans-serif;
@@ -29,22 +35,21 @@
     }
 
     /* ------------------------------------------ */
-    /* NAVBAR + HAMBURGER MENU */
+    /* SIMPLE STATIC NAVBAR */
     /* ------------------------------------------ */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      padding: 22px 26px;
+      padding: 18px 40px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-
-      background: rgba(255, 255, 255, 0.35);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     nav h1 {
@@ -52,103 +57,42 @@
       font-size: 2rem;
       font-weight: 600;
       color: var(--dark);
-      letter-spacing: 0.5px;
     }
 
-    /* Hide checkbox */
-    #menu-toggle {
-      display: none;
-    }
-
-    /* Hamburger button */
-    .menu-btn {
+    nav ul {
+      list-style: none;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 32px;
-      height: 22px;
-      cursor: pointer;
-    }
-
-    .menu-btn span {
-      display: block;
-      height: 4px;
-      width: 100%;
-      background: var(--dark);
-      border-radius: 4px;
-      transition: 0.4s ease;
-    }
-
-    /* Animate when clicked */
-    #menu-toggle:checked + label .top {
-      transform: translateY(9px) rotate(45deg);
-    }
-    #menu-toggle:checked + label .middle {
-      opacity: 0;
-    }
-    #menu-toggle:checked + label .bottom {
-      transform: translateY(-9px) rotate(-45deg);
-    }
-
-    /* Slideout menu panel */
-    .slideout {
-      position: fixed;
-      top: 0;
-      right: -280px;
-      height: 100%;
-      width: 260px;
-
-      background: #ffffff;
-      padding: 130px 40px 40px 40px;
-      display: flex;
-      flex-direction: column;
       gap: 28px;
-      border-left: 1px solid rgba(0,0,0,0.07);
-      border-radius: 12px 0 0 12px;
-
-      box-shadow: -4px 0 20px rgba(0,0,0,0.08);
-      transition: right 0.4s ease;
-      z-index: 900;
     }
 
-    .slideout a {
+    nav ul li a {
       text-decoration: none;
       color: var(--dark);
-      font-size: 1.2rem;
       font-weight: 500;
+      font-size: 1.05rem;
       transition: 0.25s ease;
     }
 
-    .slideout a:hover {
+    nav ul li a:hover {
       color: var(--sage);
-      transform: translateX(6px);
-    }
-
-    /* Slide in when checked */
-    #menu-toggle:checked ~ .slideout {
-      right: 0;
     }
 
     /* ------------------------------------------ */
     /* HERO SECTION */
     /* ------------------------------------------ */
     .overlay {
-      background-image:
-        linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-        url('IMG_0243.jpg');  /* <-- Make sure file name is exact */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+        url("IMG_0243.jpg");
       background-size: cover;
       background-position: center;
       height: 100vh;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-
       color: white;
       padding: 0 20px;
-
       animation: fadeIn 1.2s ease;
     }
 
@@ -163,7 +107,7 @@
       font-size: 1.2rem;
       color: white;
       text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
       padding-bottom: 2px;
       transition: 0.3s;
     }
@@ -174,121 +118,288 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ------------------------------------------ */
-    /* LETTER FROM EDITORS */
+    /* LETTER FROM THE EDITORS (improved readability) */
     /* ------------------------------------------ */
-
     .letter {
-      background: var(--mint);
-      padding: 120px 20px;
+      position: relative;
+      padding: 140px 20px;
       text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .letter img.letter-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.65) blur(2px);
+      z-index: 0;
+    }
+
+    .letter::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        rgba(255, 255, 255, 0.1),
+        rgba(0, 0, 0, 0.25)
+      );
+      z-index: 0;
     }
 
     .letter h2 {
+      position: relative;
+      z-index: 1;
       font-family: "Cinzel", serif;
       font-size: 3rem;
-      margin-bottom: 40px;
-      color: var(--dark);
+      margin-bottom: 30px;
+      color: #ffffff;
+      letter-spacing: 2px;
     }
 
     .letter-content {
-      max-width: 800px;
+      position: relative;
+      z-index: 1;
+      max-width: 850px;
       margin: 0 auto;
+      padding: 50px 40px;
+      background: rgba(250, 247, 240, 0.85); /* solid cream block */
+      border-radius: 18px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.25);
       font-size: 1.1rem;
-      line-height: 2;
+      line-height: 1.9;
+      color: var(--dark);
+      text-align: left;
+    }
+
+    .letter-content p {
+      margin-bottom: 18px;
     }
 
     .signature {
-      margin-top: 40px;
+      margin-top: 18px;
+      text-align: right;
       font-style: italic;
       font-size: 1rem;
       color: var(--sage);
     }
 
     /* ------------------------------------------ */
-    /* TEAM PROFILES */
+    /* CREATORS / EDITORS SECTION (original restored) */
     /* ------------------------------------------ */
-
-    .team {
-      background: var(--cream);
-      text-align: center;
-      padding: 100px 20px;
+    .editors-section {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 0 20px 80px;
+      font-family: "Inter", sans-serif;
     }
 
-    .team h2 {
-      font-family: "Cinzel", serif;
-      font-size: 2.8rem;
-      margin-bottom: 50px;
-      color: var(--dark);
+    .editor-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+      gap: 0;
+      min-height: 360px;
+      margin-bottom: 80px;
+      background: #ffffff;
+      overflow: hidden;
     }
 
-    .profiles {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
+    .editor-photo {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
-    .profile-card {
-      width: 280px;
-      background: white;
-      padding: 30px;
+    .editor-content {
+      position: relative;
+      padding: 40px 40px 60px;
+      background: #fdfdfd;
+    }
+
+    .editor-heading {
+      background: #ffffff;
+      padding: 24px 28px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .editor-heading h3 {
+      margin: 0 0 6px;
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: #303a34;
+    }
+
+    .editor-role {
+      margin: 0;
+      font-size: 0.9rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #6e7c75;
+    }
+
+    .editor-bio {
+      margin-top: 24px;
+      padding: 24px 28px 26px;
+      max-width: 620px;
+      background: #2a8f8a;
+      color: #fdfdfd;
       border-radius: 18px;
-      box-shadow: 0 6px 20px var(--shadow);
-      transition: 0.3s ease;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     }
 
-    .profile-card:hover {
-      transform: translateY(-6px);
-    }
-
-    .profile-card img {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 16px;
-    }
-
-    .profile-card h3 {
-      font-family: "Cinzel", serif;
-      font-size: 1.4rem;
-      color: var(--dark);
-      margin-bottom: 6px;
-    }
-
-    .profile-card p {
+    .editor-bio p {
+      margin: 0;
       font-size: 0.98rem;
-      line-height: 1.6;
-      color: #555;
+      line-height: 1.65;
+    }
+
+    .editor-left .editor-photo {
+      order: 1;
+    }
+
+    .editor-left .editor-content {
+      order: 2;
+    }
+
+    .editor-right .editor-photo {
+      order: 2;
+    }
+
+    .editor-right .editor-content {
+      order: 1;
+    }
+
+    .editor-card:hover .editor-photo {
+      transform: scale(1.02);
+      transition: transform 0.7s ease;
+    }
+
+    .editor-card:hover .editor-bio {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+      transition: all 0.4s ease;
+    }
+
+    @media (max-width: 900px) {
+      .editor-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .editor-photo {
+        height: 260px;
+      }
+
+      .editor-content {
+        padding: 28px 20px 40px;
+      }
+
+      .editor-bio {
+        max-width: 100%;
+      }
+    }
+
+    /* ------------------------------------------ */
+    /* CONTACT SECTION */
+    /* ------------------------------------------ */
+    .contact-section {
+      position: relative;
+      padding: 120px 20px 130px;
+      text-align: center;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .contact-section img.contact-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.4) blur(3px);
+      z-index: 0;
+    }
+
+    .contact-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .contact-inner h2 {
+      font-family: "Cinzel", serif;
+      font-size: 2.6rem;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+
+    .contact-subtitle {
+      margin: 0 auto 26px;
+      max-width: 520px;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--mint);
+    }
+
+    .contact-card {
+      margin: 0 auto;
+      max-width: 560px;
+      padding: 26px 30px 24px;
+      background: rgba(10, 22, 18, 0.6);
+      border-radius: 18px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      text-align: left;
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+
+    .contact-card p {
+      margin-bottom: 12px;
+    }
+
+    .contact-card a {
+      color: var(--mint);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(223, 242, 225, 0.5);
+      padding-bottom: 1px;
+      transition: 0.25s ease;
+    }
+
+    .contact-card a:hover {
+      color: #ffffff;
+      border-color: #ffffff;
     }
   </style>
 </head>
 
 <body>
-
   <!-- NAV -->
   <nav>
     <h1>Tidenterra</h1>
-
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="menu-btn">
-      <span class="top"></span>
-      <span class="middle"></span>
-      <span class="bottom"></span>
-    </label>
-
-    <div class="slideout">
-      <a href="#mission">Mission</a>
-      <a href="#letter">Letter from Editors</a>
-      <a href="flipbook.html">Volume 1</a>
-      <a href="#team">Creators</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <ul>
+      <li><a href="#letter">Letter</a></li>
+      <li><a href="flipbook.html">Volume 1</a></li>
+      <li><a href="#team">Creators</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
   <!-- HERO -->
@@ -299,39 +410,98 @@
 
   <!-- LETTER -->
   <section class="letter" id="letter">
+    <img src="IMG_0166.jpg" alt="Letter background" class="letter-bg" />
     <h2>Letter from the Editors</h2>
     <div class="letter-content">
+      <p>Dear Readers,</p>
       <p>
-        Sustainability and climate change are complex and often overwhelming topics to engage with...
+        Sustainability and climate change are complex and often overwhelming
+        topics to engage with. Inspired by lessons from the Environmental
+        Studies Department here at UCSB, our goal is to distill these challenges
+        into an engaging format that sparks curiosity and fosters understanding
+        between one another. We aim to make environmental education inclusive
+        and lower barriers with dense/complex scientific language that makes
+        understanding what’s happening our world scary!
       </p>
       <p>
-        We hope to make environmental education inclusive and accessible...
+        This is our first Issue and we hope to gauge how interested people would
+        be in our left-brain + right-brain love child. We want to extend an open
+        invitation to anyone for feedback or if you want to contribute to a
+        future Issue! We plan to print every quarter and would love articles,
+        poems, art pieces, book/activity recommendations, info on a campus club,
+        or anything Isla Vista sustainability-related!! If you’re interested, we
+        have more information on our last page or reach out to us!
       </p>
-
-      <p class="signature">
-        — Evelyn Tsang & Sanjana Sujeet
-      </p>
+      <p class="signature">— Evelyn Tsang & Sanjana Sujeet</p>
     </div>
   </section>
 
-  <!-- TEAM -->
-  <section class="team" id="team">
-    <h2>Meet the Creators</h2>
-
-    <div class="profiles">
-      <div class="profile-card">
-        <img src="/mnt/data/creator1.jpg">
-        <h3>Sanjana Sujeet</h3>
-        <p><em>Art Director</em><br>Blending creativity and sustainability…</p>
+  <!-- CREATORS -->
+  <section class="editors-section" id="team">
+    <article class="editor-card editor-left">
+      <div
+        class="editor-photo"
+        style="background-image: url('IMG_9759.JPG')"
+      ></div>
+      <div class="editor-content">
+        <div class="editor-heading">
+          <h3>EVELYN [SHE/HER]</h3>
+          <p class="editor-role">CO-FOUNDER & EDITOR-IN-CHIEF</p>
+        </div>
+        <div class="editor-bio">
+          <p>...</p>
+        </div>
       </div>
+    </article>
 
-      <div class="profile-card">
-        <img src="/mnt/data/creator2.jpg">
-        <h3>Evelyn Tsang</h3>
-        <p><em>Founder & Editor</em><br>Environmental storytelling & visual arts…</p>
+    <article class="editor-card editor-right">
+      <div
+        class="editor-photo"
+        style="background-image: url('IMG_7378.jpg')"
+      ></div>
+      <div class="editor-content">
+        <div class="editor-heading">
+          <h3>SANJANA [SHE/HER]</h3>
+          <p class="editor-role">CO-FOUNDER & EDITOR-IN-CHIEF</p>
+        </div>
+        <div class="editor-bio">
+          <p>...</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <img src="IMG_7380.jpg" alt="Contact background" class="contact-bg" />
+    <div class="contact-inner">
+      <h2>Contact Us</h2>
+      <p class="contact-subtitle">
+        Have ideas, feedback, or want to contribute to a future issue of
+        <em>Tidenterra</em>? We’d love to hear from you.
+      </p>
+
+      <div class="contact-card">
+        <p>
+          <strong>Email</strong><br />
+          <a href="mailto:tidenterra@gmail.com">tidenterra@gmail.com</a>
+        </p>
+
+        <p>
+          <strong>Instagram</strong><br />
+          <a href="https://instagram.com/tidenterra" target="_blank"
+            >@TidenTerra</a
+          >
+        </p>
+
+        <p>
+          <strong>Contributor Interest Form</strong><br />
+          <a href="https://your-form-link.com" target="_blank">
+            Share your art, writing, or ideas →
+          </a>
+        </p>
       </div>
     </div>
   </section>
-
 </body>
 </html>
