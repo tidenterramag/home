@@ -4,226 +4,334 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tidenterra</title>
-  <!-- Google Font for cool overlay text -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Stunning Magazine Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    /* Global Styles */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      color: #fff;
-      text-align: center;
-      /* Background Image */
-      min-height: 100vh;
+    :root {
+      /* Pastel Environmental Palette */
+      --leaf: #a6c9a8;
+      --mint: #dff2e1;
+      --cream: #faf7f0;
+      --sage: #6d8f72;
+      --dark: #2d3e32;
+      --shadow: rgba(0,0,0,0.08);
     }
-    /* Dark overlay on background image */
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--dark);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ------------------------------------------ */
+    /* NAVBAR + HAMBURGER MENU */
+    /* ------------------------------------------ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 22px 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    nav h1 {
+      font-family: "Cinzel", serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 0.5px;
+    }
+
+    /* Hide checkbox */
+    #menu-toggle {
+      display: none;
+    }
+
+    /* Hamburger button */
+    .menu-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 32px;
+      height: 22px;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      display: block;
+      height: 4px;
+      width: 100%;
+      background: var(--dark);
+      border-radius: 4px;
+      transition: 0.4s ease;
+    }
+
+    /* Animate when clicked */
+    #menu-toggle:checked + label .top {
+      transform: translateY(9px) rotate(45deg);
+    }
+    #menu-toggle:checked + label .middle {
+      opacity: 0;
+    }
+    #menu-toggle:checked + label .bottom {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Slideout menu panel */
+    .slideout {
+      position: fixed;
+      top: 0;
+      right: -280px;
+      height: 100%;
+      width: 260px;
+
+      background: #ffffff;
+      padding: 130px 40px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      border-left: 1px solid rgba(0,0,0,0.07);
+      border-radius: 12px 0 0 12px;
+
+      box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+      transition: right 0.4s ease;
+      z-index: 900;
+    }
+
+    .slideout a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 1.2rem;
+      font-weight: 500;
+      transition: 0.25s ease;
+    }
+
+    .slideout a:hover {
+      color: var(--sage);
+      transform: translateX(6px);
+    }
+
+    /* Slide in when checked */
+    #menu-toggle:checked ~ .slideout {
+      right: 0;
+    }
+
+    /* ------------------------------------------ */
+    /* HERO SECTION */
+    /* ------------------------------------------ */
     .overlay {
       background-image:
         linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-        url('tidenterra.png');
+        url('IMG_0243.jpg');  /* <-- Make sure file name is exact */
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-
-      /* Optional blur */
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      height: 100vh;
 
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      text-align: center;
+
+      color: white;
       padding: 0 20px;
+
+      animation: fadeIn 1.2s ease;
     }
-    /* Magazine Title */
-    .overlay h1 {
-      font-family: 'Playfair Display', serif;
+
+    .overlay h2 {
+      font-family: "Cinzel", serif;
       font-size: 4rem;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .overlay p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-    /* About Section */
-    .about {
-      background-color: #e6f4e6;
-      color: #333;
-      padding: 120px 60px;
-    }
-    .about h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-    .about p {
-      font-size: 1rem;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .letter {
-  background-color: #e6f4e6;
-  color: #333;
-  padding: 80px 20px;
-}
-
-.letter-content {
-  max-width: 800px;
-  margin: 0 auto;
-  font-size: 1rem;
-  line-height: 2.5;
-}
-
-.letter h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  color: #2b4c2f;
-}
-
-
-.transition-heading {
-  margin: 40px auto 0;
-  text-align: center;
-  font-size: 1.5rem;
-  color: #444;
-  font-family: 'Playfair Display', serif;
-}
-
-.letter .signature {
-  margin-top: 40px;
-  font-style: italic;
-  color: #444;
-}
-    /* Team Profiles Section */
-    .team {
-      background-color: #fff;
-      color: #333;
-      padding: 60px 20px;
-    }
-    .team h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-    }
-    .profiles {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-
-.profile-card {
-  background-color: #f9f9f9;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  width: 300px;
-  padding: 30px 20px;
-  text-align: center;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease;
-}
-
-.profile-card:hover {
-  transform: translateY(-4px);
-}
-
-.profile-card img {
-  border-radius: 50%;
-  width: 130px;
-  height: 130px;
-  object-fit: cover;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.profile-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-  color: #222;
-}
-
-.profile-card p {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #555;
-}
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .overlay h1 { font-size: 3rem; }
-      .overlay p { font-size: 1rem; }
-      .about h2, .team h2 { font-size: 2rem; }
-      .profiles { flex-direction: column; align-items: center; }
+      letter-spacing: 4px;
+      margin-bottom: 18px;
     }
 
     .hero-link {
-  display: inline-block;
-  margin-top: 16px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #fdfdfd;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  transition: color 0.3s ease, border-color 0.3s ease;
-}
+      font-size: 1.2rem;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.7);
+      padding-bottom: 2px;
+      transition: 0.3s;
+    }
 
-.hero-link:hover {
-  color: #d2e4c4;
-  border-color: #d2e4c4;
-}
+    .hero-link:hover {
+      opacity: 0.8;
+      border-color: white;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ------------------------------------------ */
+    /* LETTER FROM EDITORS */
+    /* ------------------------------------------ */
+
+    .letter {
+      background: var(--mint);
+      padding: 120px 20px;
+      text-align: center;
+    }
+
+    .letter h2 {
+      font-family: "Cinzel", serif;
+      font-size: 3rem;
+      margin-bottom: 40px;
+      color: var(--dark);
+    }
+
+    .letter-content {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 2;
+    }
+
+    .signature {
+      margin-top: 40px;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--sage);
+    }
+
+    /* ------------------------------------------ */
+    /* TEAM PROFILES */
+    /* ------------------------------------------ */
+
+    .team {
+      background: var(--cream);
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .team h2 {
+      font-family: "Cinzel", serif;
+      font-size: 2.8rem;
+      margin-bottom: 50px;
+      color: var(--dark);
+    }
+
+    .profiles {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .profile-card {
+      width: 280px;
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: 0.3s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .profile-card img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+
+    .profile-card h3 {
+      font-family: "Cinzel", serif;
+      font-size: 1.4rem;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .profile-card p {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #555;
+    }
   </style>
 </head>
+
 <body>
-  <!-- Hero Section -->
-  <div class="overlay">
+
+  <!-- NAV -->
+  <nav>
     <h1>Tidenterra</h1>
-    <a href="#submit" class="hero-link">Send Us a Submission →</a>
+
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-btn">
+      <span class="top"></span>
+      <span class="middle"></span>
+      <span class="bottom"></span>
+    </label>
+
+    <div class="slideout">
+      <a href="#mission">Mission</a>
+      <a href="#letter">Letter from Editors</a>
+      <a href="flipbook.html">Volume 1</a>
+      <a href="#team">Creators</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="overlay">
+    <h2>Tidenterra</h2>
+    <a href="flipbook.html" class="hero-link">See our first issue →</a>
   </div>
 
-  <!-- About Section -->
-  <section class="letter">
+  <!-- LETTER -->
+  <section class="letter" id="letter">
     <h2>Letter from the Editors</h2>
-    <p>
-      Sustainability and climate change are complex and often overwhelming topics to engage with. Inspired by lessons from the Environmental Studies Department here at UCSB, our goal is to distill these challenges into an engaging format that sparks curiosity and fosters understanding between one another.
-    </p>
-    <p>
-      We aim to make environmental education inclusive and lower the barriers created by dense or complex scientific language that can make understanding what’s happening in our world scary.
-    </p>
-    <p>
-      This is our first issue, and we hope to gauge how interested people would be in our left-brain + right-brain love child. We want to extend an open invitation for feedback — or to contribute to a future issue! We plan to print every quarter and would love to feature your articles, poems, art pieces, book/activity recs, club highlights, or anything IV-sustainability related.
-    </p>
-    <p>
-      Reach out to us or check out the last page for details!
-    </p>
-    <p class="signature">
-      — Evelyn Tsang & Sanjana Sujeet<br>
-      ewtsang@ucsb.edu & sanjanasujeet@ucsb.edu<br>
-      tidenterramag@gmail.com · @TidenTerra
-    </p>
+    <div class="letter-content">
+      <p>
+        Sustainability and climate change are complex and often overwhelming topics to engage with...
+      </p>
+      <p>
+        We hope to make environmental education inclusive and accessible...
+      </p>
+
+      <p class="signature">
+        — Evelyn Tsang & Sanjana Sujeet
+      </p>
+    </div>
   </section>
 
-  <!-- Team Profiles Section -->
-  <section class="team">
+  <!-- TEAM -->
+  <section class="team" id="team">
     <h2>Meet the Creators</h2>
+
     <div class="profiles">
       <div class="profile-card">
-        <img src="/mnt/data/creator1.jpg" alt="Sanjana Sujeet">
+        <img src="/mnt/data/creator1.jpg">
         <h3>Sanjana Sujeet</h3>
-        <p><em>Art Director</em><br>
-        Blending creativity and sustainability, Sanjana curates the artistic direction of each issue.</p>
+        <p><em>Art Director</em><br>Blending creativity and sustainability…</p>
       </div>
+
       <div class="profile-card">
-        <img src="/mnt/data/creator2.jpg" alt="Evelyn Tsang">
+        <img src="/mnt/data/creator2.jpg">
         <h3>Evelyn Tsang</h3>
-        <p><em>Founder & Editor</em><br>
-        Passionate about environmental storytelling and visual arts, Evelyn leads our editorial vision.</p>
+        <p><em>Founder & Editor</em><br>Environmental storytelling & visual arts…</p>
       </div>
     </div>
   </section>
+
 </body>
 </html>
